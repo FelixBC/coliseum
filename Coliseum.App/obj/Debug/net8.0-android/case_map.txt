@@ -1,0 +1,5 @@
+layout\tabbar;android\Resources\layout\Tabbar
+layout\toolbar;android\Resources\layout\Toolbar
+values\attrs;android\Resources\values\attrs
+values\colors;values\colors
+values\styles;android\Resources\values\styles

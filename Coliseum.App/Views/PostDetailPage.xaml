@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Coliseum.App.Views.PostDetailPage"
+             x:DataType="viewModels:PostDetailViewModel"
+             Title="Post Detail">
+    <ScrollView>
+        <VerticalStackLayout Padding="16">
+            <!-- Image Carousel -->
+            <CarouselView ItemsSource="{Binding Post.ImageUrls}"
+                         HeightRequest="400">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Image Source="{Binding .}"
+                               Aspect="AspectFill"
+                               BackgroundColor="LightGray"/>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <!-- Title -->
+            <Label Text="{Binding Post.Title}"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   Margin="0,16,0,8"/>
+
+            <!-- Description -->
+            <Label Text="{Binding Post.Description}"
+                   FontSize="16"
+                   LineBreakMode="WordWrap"
+                   MaxLines="3"
+                   Margin="0,0,0,16"/>
+
+            <!-- Host Info -->
+            <Grid ColumnDefinitions="Auto, *"
+                  Margin="0,0,0,16">
+                <Image Source="{Binding Post.Host.AvatarUrl}"
+                       HeightRequest="40"
+                       WidthRequest="40"
+                       Aspect="AspectFill"
+                       CornerRadius="20"
+                       Grid.Column="0"
+                       Margin="0,0,8,0"
+                       Clicked="HostAvatar_Clicked"/>
+                
+                <Label Text="{Binding Post.Host.Name}"
+                       FontSize="16"
+                       Grid.Column="1"
+                       Clicked="HostName_Clicked"/>
+            </Grid>
+
+            <!-- Like Button -->
+            <Button Text="{Binding IsLiked, Converter={StaticResource LikeTextConverter}}"
+                    Command="{Binding LikeCommand}"
+                    CornerRadius="8"
+                    HeightRequest="40"
+                    Margin="0,0,0,16"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

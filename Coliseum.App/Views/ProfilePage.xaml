@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Coliseum.App.Views.ProfilePage"
+             x:DataType="viewModels:ProfileViewModel"
+             Title="Profile">
+    <ScrollView>
+        <VerticalStackLayout Padding="16">
+            <!-- Header -->
+            <Grid ColumnDefinitions="Auto, *"
+                  RowDefinitions="Auto, Auto"
+                  Margin="0,0,0,32">
+                <!-- Avatar -->
+                <Frame Grid.RowSpan="2"
+                       Grid.Column="0"
+                       WidthRequest="100"
+                       HeightRequest="100"
+                       CornerRadius="50"
+                       HasShadow="True"
+                       Margin="0,0,16,0">
+                    <Image Source="{Binding User.AvatarUrl}"
+                           Aspect="AspectFill"
+                           HeightRequest="100"
+                           WidthRequest="100"/>
+                </Frame>
+
+                <!-- Name -->
+                <Label Grid.Row="0"
+                       Grid.Column="1"
+                       Text="{Binding User.Name}"
+                       FontSize="24"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"/>
+
+                <!-- Bio -->
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding User.Bio}"
+                       FontSize="16"
+                       LineBreakMode="WordWrap"
+                       MaxLines="2"
+                       VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- Posts Collection -->
+            <RefreshView IsRefreshing="{Binding IsRefreshing}"
+                         Command="{Binding RefreshCommand}">
+                <CollectionView ItemsSource="{Binding Posts}"
+                               ItemsLayout="VerticalGrid, 2">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Post">
+                            <Frame Margin="8" Padding="0" CornerRadius="8" HasShadow="True">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="200"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <!-- Thumbnail -->
+                                    <Image Grid.Row="0"
+                                           Source="{Binding ImageUrls[0]}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="200"
+                                           WidthRequest="200"
+                                           BackgroundColor="LightGray"
+                                           HorizontalOptions="Fill"
+                                           VerticalOptions="Fill"/>
+
+                                    <!-- Title -->
+                                    <Label Grid.Row="1"
+                                           Text="{Binding Title}"
+                                           FontSize="16"
+                                           Padding="8,4,8,8"
+                                           HorizontalOptions="Start"
+                                           VerticalOptions="Start"
+                                           TextColor="Black"
+                                           BackgroundColor="White"/>
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

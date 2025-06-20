@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Coliseum.App.Views.FeedPage"
+             Title="Feed">
+    <RefreshView x:DataType="viewModels:FeedViewModel"
+                 IsRefreshing="{Binding IsRefreshing}"
+                 Command="{Binding RefreshCommand}">
+        <CollectionView ItemsSource="{Binding Posts}"
+                        ItemsLayout="VerticalGrid, 2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Post">
+                    <Frame Margin="8" Padding="0" CornerRadius="8" HasShadow="True">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="200"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <!-- Thumbnail -->
+                            <Image Grid.Row="0"
+                                   Source="{Binding ImageUrls[0]}"
+                                   Aspect="AspectFill"
+                                   HeightRequest="200"
+                                   WidthRequest="200"
+                                   BackgroundColor="LightGray"
+                                   HorizontalOptions="Fill"
+                                   VerticalOptions="Fill"/>
+
+                            <!-- Title -->
+                            <Label Grid.Row="1"
+                                   Text="{Binding Title}"
+                                   FontSize="16"
+                                   Padding="8,4,8,8"
+                                   HorizontalOptions="Start"
+                                   VerticalOptions="Start"
+                                   TextColor="Black"
+                                   BackgroundColor="White"/>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>
