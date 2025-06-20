@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Navigation Animations -->
+    <x:String x:Key="NavigationAnimation">
+        await Shell.Current.GoToAsync("//{0}", true);
+    </x:String>
+
+    <!-- Button Press Animation -->
+    <x:String x:Key="ButtonPressAnimation">
+        await this.ScaleTo(0.95, 100, Easing.SinInOut);
+        await this.ScaleTo(1, 100, Easing.SinInOut);
+    </x:String>
+
+    <!-- Image Fade Animation -->
+    <x:String x:Key="ImageFadeAnimation">
+        await this.FadeTo(0, 0);
+        await this.FadeTo(1, 300, Easing.SinInOut);
+    </x:String>
+
+    <!-- Skeleton Loader Animation -->
+    <x:String x:Key="SkeletonAnimation">
+        await this.ScaleTo(1.05, 500, Easing.SinInOut);
+        await this.ScaleTo(1, 500, Easing.SinInOut);
+    </x:String>
+
+</ResourceDictionary>

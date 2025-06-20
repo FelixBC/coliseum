@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <!-- Colors -->
+    <Color x:Key="BackgroundColor">#FFFFFF</Color>
+    <Color x:Key="PrimaryColor">#1E88E5</Color>
+    <Color x:Key="SecondaryColor">#2196F3</Color>
+    <Color x:Key="TextColor">#212121</Color>
+    <Color x:Key="TextSecondaryColor">#757575</Color>
+    <Color x:Key="BorderColor">#E0E0E0</Color>
+    <Color x:Key="PlaceholderColor">#BDBDBD</Color>
+    <Color x:Key="SuccessColor">#4CAF50</Color>
+    <Color x:Key="ErrorColor">#F44336</Color>
+    <Color x:Key="WarningColor">#FFA000</Color>
+
+    <!-- Typography -->
+    <OnPlatform x:TypeArguments="x:String" x:Key="HeadingFontFamily">
+        <On Platform="Android" Value="sans-serif-medium" />
+        <On Platform="iOS" Value="System" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:Double" x:Key="HeadingFontSize">
+        <On Platform="Android" Value="24" />
+        <On Platform="iOS" Value="24" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:String" x:Key="BodyFontFamily">
+        <On Platform="Android" Value="sans-serif" />
+        <On Platform="iOS" Value="System" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:Double" x:Key="BodyFontSize">
+        <On Platform="Android" Value="16" />
+        <On Platform="iOS" Value="16" />
+    </OnPlatform>
+
+    <!-- Dimensions -->
+    <OnPlatform x:TypeArguments="x:Double" x:Key="CornerRadius">
+        <On Platform="Android" Value="8" />
+        <On Platform="iOS" Value="8" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:Double" x:Key="SpacingSmall">
+        <On Platform="Android" Value="8" />
+        <On Platform="iOS" Value="8" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:Double" x:Key="SpacingMedium">
+        <On Platform="Android" Value="16" />
+        <On Platform="iOS" Value="16" />
+    </OnPlatform>
+    <OnPlatform x:TypeArguments="x:Double" x:Key="SpacingLarge">
+        <On Platform="Android" Value="24" />
+        <On Platform="iOS" Value="24" />
+    </OnPlatform>
+
+    <!-- Button Style -->
+    <Style TargetType="Button" x:Key="PrimaryButton">
+        <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+        <Setter Property="Padding" Value="20,12" />
+        <Setter Property="FontSize" Value="{StaticResource BodyFontSize}" />
+        <Setter Property="FontFamily" Value="{StaticResource BodyFontFamily}" />
+    </Style>
+
+    <!-- Frame Style -->
+    <Style TargetType="Frame" x:Key="CardFrame">
+        <Setter Property="CornerRadius" Value="{StaticResource CornerRadius}" />
+        <Setter Property="BackgroundColor" Value="White" />
+        <Setter Property="BorderColor" Value="{StaticResource BorderColor}" />
+        <Setter Property="HasShadow" Value="True" />
+        <Setter Property="Margin" Value="{StaticResource SpacingSmall}" />
+    </Style>
+
+    <!-- CollectionView Style -->
+    <Style TargetType="CollectionView" x:Key="ContentList">
+        <Setter Property="Spacing" Value="{StaticResource SpacingSmall}" />
+        <Setter Property="Margin" Value="{StaticResource SpacingMedium}" />
+    </Style>
+
+</ResourceDictionary>

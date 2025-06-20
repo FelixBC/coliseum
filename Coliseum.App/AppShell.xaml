@@ -5,7 +5,28 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:Coliseum.App"
     xmlns:views="clr-namespace:Coliseum.App.Views"
-    Shell.FlyoutBehavior="Disabled">
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="True"
+    Shell.NavBarHasShadow="True">
+
+    <!-- Global Shell Resources -->
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ShellItem">
+                <Setter Property="Shell.NavBarIsVisible" Value="True" />
+                <Setter Property="Shell.NavBarHasShadow" Value="True" />
+            </Style>
+
+            <Style TargetType="ShellSection">
+                <Setter Property="TitleColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="IconColor" Value="{DynamicResource TextSecondaryColor}" />
+            </Style>
+
+            <Style TargetType="ShellContent">
+                <Setter Property="Shell.NavBarIsVisible" Value="True" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
 
     <TabBar>
         <Tab Title="Feed" Icon="feed.png">
@@ -18,5 +39,31 @@
             <ShellContent ContentTemplate="{DataTemplate views:ProfilePage}" />
         </Tab>
     </TabBar>
+
+    <!-- Global Shell Footer -->
+    <Shell.Footer>
+        <Grid Padding="{DynamicResource SpacingSmall}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0"
+                    Text="Feed"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding GoToFeedCommand}" />
+
+            <Button Grid.Column="1"
+                    Text="Search"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding GoToSearchCommand}" />
+
+            <Button Grid.Column="2"
+                    Text="Profile"
+                    Style="{StaticResource PrimaryButton}"
+                    Command="{Binding GoToProfileCommand}" />
+        </Grid>
+    </Shell.Footer>
 
 </Shell>

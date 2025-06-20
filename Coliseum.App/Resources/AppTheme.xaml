@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:local="clr-namespace:Coliseum.App">
+
+    <!-- Theme Resources -->
+    <ResourceDictionary Source="Themes/LightTheme.xaml" x:Key="LightTheme" />
+    <ResourceDictionary Source="Themes/DarkTheme.xaml" x:Key="DarkTheme" />
+    <ResourceDictionary Source="Animations.xaml" />
+
+    <!-- Theme Manager -->
+    <local:ThemeManager x:Key="ThemeManager" />
+
+</ResourceDictionary>

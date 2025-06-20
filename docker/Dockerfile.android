@@ -1,0 +1,47 @@
+# Base image with .NET SDK and Android SDK
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Install Java for Android SDK
+RUN apt-get update && apt-get install -y \
+    default-jdk \
+    unzip \
+    wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# Download and install Android Command Line Tools
+RUN wget https://dl.google.com/android/repository/commandlinetools-linux-10406996_latest.zip -O cmdline-tools.zip \
+    && unzip cmdline-tools.zip -d /opt/android \
+    && rm cmdline-tools.zip
+
+# Set environment variables
+ENV ANDROID_HOME=/opt/android/cmdline-tools/latest \
+    PATH=$PATH:$ANDROID_HOME/bin:$ANDROID_HOME/emulator
+
+# Accept Android SDK licenses
+RUN yes | sdkmanager --sdk_root=$ANDROID_HOME --licenses
+
+# Install required Android SDK packages
+RUN sdkmanager --sdk_root=$ANDROID_HOME \
+    "platform-tools" \
+    "platforms;android-34" \
+    "build-tools;34.0.0"
+
+# Copy project files
+WORKDIR /app
+COPY . .
+
+# Restore and build
+RUN dotnet restore \
+    && dotnet build -c Release -f net8.0-android
+
+# Publish the app
+RUN dotnet publish -c Release -f net8.0-android -o /app/publish
+
+# Runtime image
+FROM mcr.microsoft.com/dotnet/runtime:8.0
+
+WORKDIR /app
+COPY --from=build /app/publish .
+
+# Set entrypoint
+ENTRYPOINT ["dotnet", "Coliseum.App.dll"]

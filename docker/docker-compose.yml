@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  coliseum-android:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.android
+    ports:
+      - "5000:5000"  # API port
+      - "8081:8081"  # Debug port
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_USE_POLLING_FILE_WATCHER=1
+    volumes:
+      - ../:/app
+      - ~/.nuget/packages:/root/.nuget/packages
+      - /app/obj:/app/obj
+      - /app/bin:/app/bin
+    command: dotnet watch run --no-launch-profile

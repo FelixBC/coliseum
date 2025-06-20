@@ -9,8 +9,50 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
+                <ResourceDictionary Source="Resources/AppTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <converters:LikeTextConverter x:Key="LikeTextConverter" />
+            
+            <!-- Global Styles -->
+            <Style TargetType="Label">
+                <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="FontSize" Value="{DynamicResource BodyFontSize}" />
+                <Setter Property="FontFamily" Value="{DynamicResource BodyFontFamily}" />
+                <Setter Property="Margin" Value="{DynamicResource SpacingSmall}" />
+            </Style>
+
+            <Style TargetType="Entry">
+                <Setter Property="TextColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="PlaceholderColor" Value="{DynamicResource PlaceholderColor}" />
+                <Setter Property="CornerRadius" Value="{DynamicResource CornerRadius}" />
+                <Setter Property="Margin" Value="{DynamicResource SpacingSmall}" />
+            </Style>
+
+            <Style TargetType="Button">
+                <Setter Property="Style" Value="{StaticResource PrimaryButton}" />
+            </Style>
+
+            <Style TargetType="Frame">
+                <Setter Property="Style" Value="{StaticResource CardFrame}" />
+            </Style>
+
+            <Style TargetType="CollectionView">
+                <Setter Property="Style" Value="{StaticResource ContentList}" />
+            </Style>
+
+            <!-- Page Layout -->
+            <Style TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+                <Setter Property="Padding" Value="{DynamicResource SpacingMedium}" />
+            </Style>
+
+            <!-- Navigation Bar -->
+            <Style TargetType="Shell">
+                <Setter Property="BackgroundColor" Value="{DynamicResource BackgroundColor}" />
+                <Setter Property="TitleColor" Value="{DynamicResource TextColor}" />
+                <Setter Property="HeaderBackground" Value="{DynamicResource BackgroundColor}" />
+                <Setter Property="HeaderTextColor" Value="{DynamicResource TextColor}" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
